@@ -73,21 +73,32 @@ registrBtn.addEventListener('click', function() {
 
 login.addEventListener('click', function() {
     let a = prompt('Введите Логин'),
-        b = prompt('Введите пароль'),
-        c;
+        b,
+        c,
+        d;
 
-    arr.find(function(item, i) {
-        if (a === item.firstName && b === item.pasword) {
-            c = item.firstName;
+    arr.find(function(item) {
+        if (a === item.login) {
+            b = item.login;
         }
     });
 
-    if (a === c) {
-        title.innerHTML = c;
+    if (a !== b) {
+        alert('Пользователя с таким логином не найдено');
     } else {
-        alert('Пользователь не найден');
+        c = prompt('Введите пароль');
+        arr.find(function(item) {
+            if (a === item.login && c === item.pasword) {
+                d = item.pasword;
+            }
+        });
+        if (a === b && c === d) {
+            title.innerHTML = b;
+            
+        } else {
+            alert('Неверный пароль');
+        } 
     }
-
 });
 
 jsonDisplay();
